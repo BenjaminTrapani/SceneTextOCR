@@ -1,0 +1,3 @@
+[submodule "ExternalLibs/CNTK"]
+	path = ExternalLibs/CNTK
+	url = https://github.com/BenjaminTrapani/CNTK.git

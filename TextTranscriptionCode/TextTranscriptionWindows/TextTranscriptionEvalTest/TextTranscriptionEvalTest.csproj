@@ -63,4 +63,11 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /Y $(ProjectPath)\..\..\x64\Release\*.dll $(TargetDir)</PostBuildEvent>
+  </PropertyGroup>
 </Project>

@@ -12,13 +12,20 @@ namespace TextTranscriptionEvalTest
 	{
 		static void Main(string[] args)
 		{
-			const String basePath = "C:\\Users\\btrap\\source\\repos\\OCR\\SceneTextOCR2\\TextTranscriptionCode\\TextTranscriptionWindows\\";
-			TextTranscriptionService testService = new TextTranscriptionService(basePath + "Content\\ResNetCRNNNewCNTK32SeqLenOut");
-			byte[] imageBytes = File.ReadAllBytes(basePath + "..\\WebTester\\5_conveyed_16772.jpg");
-			String recognizedText = testService.recognizeImage(imageBytes);
-			Console.WriteLine(recognizedText);
-			Console.ReadKey();
-			//System.Diagnostics.Debugger.Break();
+			if (args.Length != 2)
+			{
+				Console.WriteLine("Usage: TextTranscriptionEvalTest [ModelFile] [TestImage]");
+			}
+			else
+			{
+				String modelFile = args[0];
+				String testImage = args[1];
+				TextTranscriptionService testService = new TextTranscriptionService(modelFile);
+				byte[] imageBytes = File.ReadAllBytes(testImage);
+				String recognizedText = testService.recognizeImage(imageBytes);
+				Console.WriteLine(recognizedText);
+				Console.ReadKey();
+			}
 		}
 	}
 }

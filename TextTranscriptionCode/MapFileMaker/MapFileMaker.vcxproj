@@ -87,8 +87,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>D:\libs\boost_1_66_0-bin-msvc-all-32-64\boost_1_66_0\;.\;C:\Users\btrap\source\repos\libarchive-fork\libarchive\;D:\local\opencv3.4.0\build\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\btrap\source\repos\libarchive-fork\libarchive\Release\;D:\libs\boost_1_66_0-bin-msvc-all-32-64\boost_1_66_0\lib64-msvc-14.1\;D:\local\opencv3.4.0\build\x64\vc14\lib\;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\libs\boost_1_66_0-bin-msvc-all-32-64\boost_1_66_0\;.\;C:\Users\btrap\source\repos\libarchive-fork\libarchive\;$(OPENCV_34_DIR)\build\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\btrap\source\repos\libarchive-fork\libarchive\Release\;D:\libs\boost_1_66_0-bin-msvc-all-32-64\boost_1_66_0\lib64-msvc-14.1\;$(OPENCV_34_DIR)\build\x64\vc14\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -178,7 +178,7 @@ xcopy /Y C:\local\opencv\build-x86\bin\Release\opencv_imgcodecs310.dll $(OutDir)
       <Command>xcopy /Y D:\libs\boost_1_66_0-bin-msvc-all-32-64\boost_1_66_0\lib64-msvc-14.1\boost_filesystem-vc141-mt-x64-1_66.dll  $(OutDir)
 xcopy /Y D:\libs\boost_1_66_0-bin-msvc-all-32-64\boost_1_66_0\lib64-msvc-14.1\boost_system-vc141-mt-x64-1_66.dll  $(OutDir)
 xcopy /Y C:\Users\btrap\source\repos\libarchive-fork\bin\Debug\archive.dll $(OutDir)
-xcopy /Y D:\code\CNTK\x64\Release\opencv_world340.dll $(OutDir)</Command>
+xcopy /Y $(OPENCV_34_DIR)\build\x64\vc15\bin\opencv_world340.dll $(OutDir)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

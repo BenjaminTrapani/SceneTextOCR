@@ -46,13 +46,15 @@ namespace ASPWebService.Controllers
 			filePath = System.Web.Hosting.HostingEnvironment.MapPath(urlResource);
 			curBytesToConvert = System.Convert.FromBase64String(recoRequest.base64image);
 
-			if (transcriptionThread.ThreadState == ThreadState.Unstarted)
+			lock (transcriptionThread)
 			{
-				transcriptionThread.Start();
+				if (transcriptionThread.ThreadState == ThreadState.Unstarted)
+				{
+					transcriptionThread.Start();
+				}
+				transcriptionStartSem.Release();
+				transcriptionEndSem.WaitOne();
 			}
-
-			transcriptionStartSem.Release();
-			transcriptionEndSem.WaitOne();
 
 			return recoResult;
 		}

@@ -75,8 +75,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(VC_IncludePath);$(WindowsSDK_IncludePath);./;D:\code\CNTK\Source\CNTKv2LibraryDll\API;../;C:\local\opencv3.4.0\build\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\local\opencv3.4.0\build\x64\vc14\lib;$(LibraryPath);D:\code\CNTK\x64\Release;</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);./;$(ProjectPath)\..\..\..\..\ExternalLibs\CNTK\\Source\CNTKv2LibraryDll\API;../;C:\local\opencv3.4.0\build\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\local\opencv3.4.0\build\x64\vc14\lib;$(LibraryPath);$(ProjectPath)\..\..\..\..\ExternalLibs\CNTK\x64\Release</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>

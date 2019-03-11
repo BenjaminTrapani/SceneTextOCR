@@ -85,8 +85,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>./;D:\code\CNTK\Source\CNTKv2LibraryDll\API;C:\local\opencv3.4.0\build\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\local\opencv3.4.0\build\x64\vc14\lib;D:\code\CNTK\x64\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath>./;$(ProjectPath)\..\..\..\ExternalLibs\CNTK\Source\CNTKv2LibraryDll\API;C:\local\opencv3.4.0\build\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\local\opencv3.4.0\build\x64\vc14\lib;$(ProjectPath)\..\..\..\ExternalLibs\CNTK\x64\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -174,8 +174,8 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>xcopy /Y D:\code\CNTK\x64\Release\*.dll $(OutDir)
-xcopy /Y D:\code\CNTK\x64\Release\*.pdb $(OutDir)</Command>
+      <Command>xcopy /Y $(ProjectPath)\..\..\..\ExternalLibs\CNTK\x64\Release\*.dll $(OutDir)
+xcopy /Y $(ProjectPath)\..\..\..\ExternalLibs\CNTK\x64\Release\*.pdb $(OutDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

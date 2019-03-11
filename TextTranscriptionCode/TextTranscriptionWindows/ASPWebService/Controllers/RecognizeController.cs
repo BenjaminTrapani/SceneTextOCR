@@ -16,35 +16,45 @@ namespace ASPWebService.Controllers
 {
     public class RecognizeController : ApiController
     {
-		static TextTranscriptionService transcriptionService;
-
 		public class RecoRequest
 		{
 			public String base64image;
 		}
 
+		private static string filePath;
+		private static byte[] curBytesToConvert;
+		private static String recoResult;
+		private static Semaphore transcriptionStartSem = new Semaphore(0, 1);
+		private static Semaphore transcriptionEndSem = new Semaphore(0, 1);
+
+		private static Thread transcriptionThread = new Thread(() =>
+		{
+			TextTranscriptionService transcriptionService = new TextTranscriptionService(filePath);
+			while (true)
+			{
+				transcriptionStartSem.WaitOne();
+				recoResult = transcriptionService.recognizeImage(curBytesToConvert);
+				transcriptionEndSem.Release();
+			}
+		}, 4194304);
+
 		public String Post([FromBody]RecoRequest recoRequest)
 		{
-			if (transcriptionService == null)
+			HttpContextBase httpContext = new HttpContextWrapper(HttpContext.Current);
+			var urlResource = UrlHelper.GenerateContentUrl("~/Content/ResNetCRNNNewCNTK32SeqLenOut", httpContext);
+
+			filePath = System.Web.Hosting.HostingEnvironment.MapPath(urlResource);
+			curBytesToConvert = System.Convert.FromBase64String(recoRequest.base64image);
+
+			if (transcriptionThread.ThreadState == ThreadState.Unstarted)
 			{
-				HttpContextBase httpContext = new HttpContextWrapper(HttpContext.Current);
-				var urlResource = UrlHelper.GenerateContentUrl("~/Content/ResNetCRNNNewCNTK32SeqLenOut", httpContext);
-				string filePath = System.Web.Hosting.HostingEnvironment.MapPath(urlResource);
-				transcriptionService = new TextTranscriptionService(filePath);
+				transcriptionThread.Start();
 			}
 
-			byte[] convertedBytes = System.Convert.FromBase64String(recoRequest.base64image);
+			transcriptionStartSem.Release();
+			transcriptionEndSem.WaitOne();
 
-			// Work around stack overflow errors
-			String result = null;
-			var thread = new Thread(() =>
-			{
-				result = transcriptionService.recognizeImage(convertedBytes);
-			}, 4194304);
-			thread.Start();
-			thread.Join();
-
-			return result;
+			return recoResult;
 		}
 	}
 }

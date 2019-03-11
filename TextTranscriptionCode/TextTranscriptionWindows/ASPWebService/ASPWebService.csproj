@@ -227,12 +227,8 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="ApplicationInsights.config" />
-    <Content Include="Content\ResNetCRNNNewCNTK32SeqLenOut">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\ResNetCRNNNewCNTK32SeqLenOut.ckp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Content\ResNetCRNNNewCNTK32SeqLenOut" />
+    <Content Include="Content\ResNetCRNNNewCNTK32SeqLenOut.ckp" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

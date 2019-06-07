@@ -57,5 +57,8 @@ export default class Home extends Vue {
 .my-clipper {
   width: 100%;
   max-width: 700px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

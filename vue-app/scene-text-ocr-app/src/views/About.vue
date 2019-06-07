@@ -1,12 +1,15 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-    <clipper-upload v-model="imgURL">upload image</clipper-upload>
+    <clipper-upload v-model="imgURL">
+      <button>
+        Upload an image
+      </button>
+    </clipper-upload>
     <clipper-basic class="my-clipper" ref="clipper" :src="imgURL">
-      <div class="placeholder" slot="placeholder">No image</div>
+      <div class="placeholder" slot="placeholder"></div>
     </clipper-basic>
-    <h2>Recognized text: {{recognizedText}}</h2>
     <button v-on:click="recognizeClip">Recognize text in clip</button>
+    <h2>Recognized text: {{recognizedText}}</h2>
   </div>
 </template>
 <script lang="ts">

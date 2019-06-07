@@ -11,9 +11,11 @@ using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Web.Http.Cors;
 
 namespace ASPWebService.Controllers
 {
+	[EnableCors(origins: "*", headers: "*", methods: "*")]
     public class RecognizeController : ApiController
     {
 		public class RecoRequest

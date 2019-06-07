@@ -32,21 +32,18 @@ export default class Home extends Vue {
       throw new Error('base64 encoding not present in png url string, ummmmmm');
     }
     const pngAsBase64 = pngUrl.substring(indexOfEncoding + encodingToken.length);
-    console.log(pngUrl);
-    console.log(pngAsBase64);
     const recoPayload = { base64image: pngAsBase64 };
     const thisRef = this;
-    fetch("http://64.187.164.30:63264/SceneTextOCR/Api/recognize", {
-      method: "POST",
+    fetch('http://64.187.164.30:63264/SceneTextOCR/Api/recognize', {
+      method: 'POST',
       body: JSON.stringify(recoPayload),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     })
     .then((response) => {
       response.json().then((parsedResponse) => {
         thisRef.recognizedText = parsedResponse;
-        console.log("Recognized text: " + thisRef.recognizedText);
       });
     });
   }

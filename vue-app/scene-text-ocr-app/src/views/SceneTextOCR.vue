@@ -5,27 +5,39 @@
         Upload an image
       </button>
     </clipper-upload>
+    <p v-show="imgURL.length > 0">
+      Select a single word to recognize in the image below.
+    </p>
     <clipper-basic class="my-clipper" ref="clipper" :src="imgURL">
       <div class="placeholder" slot="placeholder"></div>
     </clipper-basic>
     <button v-on:click="recognizeClip">Recognize text in clip</button>
-    <h2>Recognized text: {{recognizedText}}</h2>
+    <h2 v-show="isRecoInProgress">Recognizing...</h2>
+    <h2 v-show="recognizedText.length > 0">
+      Recognized text: {{recognizedText}}
+    </h2>
+    <h3 v-show="trimmedRecognizedText.length > 0">
+      Final text: {{trimmedRecognizedText}}
+    </h3>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 
 @Component({
   components: {
-    HelloWorld,
   },
 })
-export default class Home extends Vue {
+export default class SceneTextOCR extends Vue {
   private imgURL: string = '';
   private recognizedText: string = '';
+  private trimmedRecognizedText: string = '';
+  private isRecoInProgress: boolean = false;
 
   private recognizeClip(): void {
+    this.recognizedText = '';
+    this.trimmedRecognizedText = '';
+    this.isRecoInProgress = true;
     const clipper: any = this.$refs.clipper;
     const canvas = clipper.clip();
     const pngUrl = canvas.toDataURL('image/png', 1);
@@ -46,7 +58,9 @@ export default class Home extends Vue {
     })
     .then((response) => {
       response.json().then((parsedResponse) => {
+        thisRef.isRecoInProgress = false;
         thisRef.recognizedText = parsedResponse;
+        thisRef.trimmedRecognizedText = thisRef.recognizedText.replace(/_/g, '');
       });
     });
   }

@@ -30,20 +30,14 @@ int main(int argc, char** argv) {
   while (!shouldQuit) {
     std::string line;
     while (!std::getline(std::cin, line)) {
-      std::cout << "Stdin became bad, resetting" << std::endl;
       std::cin.clear();
-    }
-    if (line.empty()) {
-      std::cout << "Skipping empty line" << std::endl;
-      continue;
     }
     if (line == "q") {
       shouldQuit = true;
     } else {
-      std::cout << "Will read file: " << line << std::endl;
       auto imageData = readAllBytesFromFile(line);
       const auto recognizedText = model.evalImage(imageData);
-      std::cout << "recognized text: " << recognizedText << std::endl;
+      std::cout << recognizedText << std::endl;
     }
   }
 

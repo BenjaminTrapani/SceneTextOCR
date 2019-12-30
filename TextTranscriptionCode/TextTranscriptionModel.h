@@ -5,6 +5,7 @@
 #ifndef TEXTTRANSCRIPTIONCODE_TEXTTRANSCRIPTIONMODEL_H
 #define TEXTTRANSCRIPTIONCODE_TEXTTRANSCRIPTIONMODEL_H
 #include <vector>
+#include <memory>
 
 namespace CNTK
 {
@@ -22,7 +23,13 @@ namespace CNTK
 
 using VariablePtr = std::shared_ptr<CNTK::Variable>;
 
-class __declspec(dllexport) TextTranscriptionModel {
+#ifdef WIN32
+#define DLL_EXPORT __declspec(dllexport)
+#else
+#define DLL_EXPORT
+#endif
+
+class DLL_EXPORT TextTranscriptionModel {
 public:
     TextTranscriptionModel(unsigned int imageWidth,
                            unsigned int imageHeight,

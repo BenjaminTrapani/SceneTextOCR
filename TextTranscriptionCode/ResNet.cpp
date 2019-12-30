@@ -1,11 +1,12 @@
 //
 // Created by benjamintrapani on 11/22/17.
 //
-
+#ifdef WIN32
 //#include "pch.h"
 #include "stdafx.h"
-#include "ResNet.h"
+#endif
 
+#include "ResNet.h"
 #include <exception>
 
 using namespace CNTK;

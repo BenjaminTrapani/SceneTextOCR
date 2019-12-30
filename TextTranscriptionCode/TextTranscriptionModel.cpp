@@ -2,9 +2,10 @@
 // Created by benjamintrapani on 11/22/17.
 //
 
+#ifdef WIN32
 //#include "pch.h"
-
 #include "stdafx.h"
+#endif
 
 #include "CNTKLibrary.h"
 #include "TextTranscriptionModel.h"

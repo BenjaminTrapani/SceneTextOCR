@@ -6,6 +6,7 @@ project(SceneTextOCR)
 set(CNTK_DIR ../ExternalLibs/CNTK)
 
 find_package(OpenCV REQUIRED)
+find_package(Threads REQUIRED)
 
 include_directories(${CNTK_DIR}/Source/CNTKv2LibraryDll/API/ /usr/local/opencv-3.1.0/include)
 link_directories(${CNTK_DIR}/build/release/lib)
@@ -18,4 +19,4 @@ add_executable(SceneTextOCRTrainer main.cpp)
 target_link_libraries(SceneTextOCRTrainer SceneTextOCR ${CNTK_REQUIRED_LIBS})
 
 add_executable(SceneTextOCREvaluator evaluator.cpp)
-target_link_libraries(SceneTextOCREvaluator SceneTextOCR ${CNTK_REQUIRED_LIBS})
+target_link_libraries(SceneTextOCREvaluator SceneTextOCR ${CNTK_REQUIRED_LIBS} ${CMAKE_THREAD_LIBS_INIT})

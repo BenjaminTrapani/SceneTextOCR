@@ -16,6 +16,8 @@ app.image_id = 0
 
 class recognize_text:
     def POST(self):
+        web.header('Access-Control-Allow-Origin',      '*')
+        web.header('Access-Control-Allow-Credentials', 'true')
         data = json.loads(web.data())
         base64image = data['base64image']
         image_path = os.path.join(IMAGE_CACHE, str(app.image_id) + '.img');
@@ -27,7 +29,13 @@ class recognize_text:
             
         print(result)
         app.image_id = app.image_id + 1
-        return result
-        
+        return json.dumps(result)
+    
+    def OPTIONS(self):
+        web.header('Access-Control-Allow-Origin',      '*')
+	web.header('Access-Control-Allow-Credentials', 'true')
+        web.header('Access-Control-Allow-Headers', 'Origin, Content-Type')
+
+
 if __name__ == "__main__":
     app.run()

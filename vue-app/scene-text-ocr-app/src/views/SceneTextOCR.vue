@@ -58,7 +58,7 @@ export default class SceneTextOCR extends Vue {
     const pngAsBase64 = pngUrl.substring(indexOfEncoding + encodingToken.length);
     const recoPayload = { base64image: pngAsBase64 };
     const thisRef = this;
-    fetch('http://skytopsoftware.ddns.net:63264/SceneTextOCR/Api/recognize', {
+    fetch('https://skytopsoftware.ddns.net:63264/SceneTextOCR/Api/recognize', {
       method: 'POST',
       body: JSON.stringify(recoPayload),
       headers: {

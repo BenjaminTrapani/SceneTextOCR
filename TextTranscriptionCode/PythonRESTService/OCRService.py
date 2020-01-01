@@ -3,12 +3,20 @@ import base64
 import json
 import os
 from subprocess import Popen, PIPE
-
-urls = ('/SceneTextOCR/Api/recognize', 'recognize_text')
+from cheroot.server import HTTPServer
+from cheroot.ssl.builtin import BuiltinSSLAdapter
 
 OCR_EVALUATOR_PATH = '../build/SceneTextOCREvaluator'
 IMAGE_CACHE = 'ImageCache'
 MODEL_FILE = '../TextTranscriptionWindows/Content/ResNetCRNNNewCNTK32SeqLenOut'
+SSL_CERT_PATH = '/etc/letsencrypt/live/skytopsoftware.ddns.net/fullchain.pem'
+SSL_CERT_KEY_PATH = '/etc/letsencrypt/live/skytopsoftware.ddns.net/privkey.pem'
+
+HTTPServer.ssl_adapter = BuiltinSSLAdapter(
+        certificate=SSL_CERT_PATH,
+        private_key=SSL_CERT_KEY_PATH)
+
+urls = ('/SceneTextOCR/Api/recognize', 'recognize_text')
 
 app = web.application(urls, globals())
 app.reco_process = Popen([OCR_EVALUATOR_PATH, MODEL_FILE], stdin=PIPE, stdout=PIPE, stderr=PIPE)

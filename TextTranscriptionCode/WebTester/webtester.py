@@ -16,5 +16,5 @@ base64imagestring = base64image.decode('utf-8')
 payload = {'base64image': base64imagestring}
 headers = {'Content-Type': 'application/json'}
 
-r = requests.post("http://skytopsoftware.ddns.net:63264/SceneTextOCR/Api/recognize", headers=headers, data=json.dumps(payload))
+r = requests.post("https://skytopsoftware.ddns.net:63264/SceneTextOCR/Api/recognize", headers=headers, data=json.dumps(payload))
 print("Recognized text: " + r.text)

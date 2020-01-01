@@ -8,10 +8,13 @@
     <p v-show="imgURL.length > 0">
       Select a single word to recognize in the image below.
     </p>
-    <clipper-basic class="my-clipper" ref="clipper" :src="imgURL">
+    <clipper-basic class="my-clipper" ref="clipper" :src="imgURL"
+      v-on:load="onClipperLoaded()">
       <div class="placeholder" slot="placeholder"></div>
     </clipper-basic>
-    <button v-on:click="recognizeClip">Recognize text in clip</button>
+    <button v-on:click="recognizeClip" v-show="imgURL.length > 0">
+      Recognize text in clip
+    </button>
     <h2 v-show="isRecoInProgress">Recognizing...</h2>
     <h2 v-show="recognizedText.length > 0">
       Recognized text: {{recognizedText}}
@@ -29,10 +32,16 @@ import { Component, Vue } from 'vue-property-decorator';
   },
 })
 export default class SceneTextOCR extends Vue {
-  private imgURL: string = '';
+  private imgURL: string = 'img/default_img.jpg';
   private recognizedText: string = '';
   private trimmedRecognizedText: string = '';
   private isRecoInProgress: boolean = false;
+
+  protected onClipperLoaded(): void {
+    const clipper: any = this.$refs.clipper;
+    clipper.setTL$.next({top: 20, left: 43});
+    clipper.setWH$.next({width: 22, height: 14});
+  }
 
   private recognizeClip(): void {
     this.recognizedText = '';

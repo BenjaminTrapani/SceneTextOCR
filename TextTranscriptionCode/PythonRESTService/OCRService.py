@@ -31,17 +31,17 @@ class recognize_text:
         image_path = os.path.join(IMAGE_CACHE, str(app.image_id) + '.img');
         with open(image_path, 'w+b') as f:
             f.write(base64.b64decode(base64image));
-        app.reco_process.stdin.write(image_path + '\n')
+        app.reco_process.stdin.write(str.encode(image_path + '\n'))
         app.reco_process.stdin.flush()
-        result = app.reco_process.stdout.readline()
-            
+        result = app.reco_process.stdout.readline().decode('utf-8')
+
         print(result)
         app.image_id = app.image_id + 1
         return json.dumps(result)
     
     def OPTIONS(self):
         web.header('Access-Control-Allow-Origin',      '*')
-	web.header('Access-Control-Allow-Credentials', 'true')
+        web.header('Access-Control-Allow-Credentials', 'true')
         web.header('Access-Control-Allow-Headers', 'Origin, Content-Type')
 
 

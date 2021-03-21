@@ -18,3 +18,6 @@ target_link_libraries(SceneTextOCRTrainer SceneTextOCR ${CNTK_REQUIRED_LIBS})
 
 add_executable(SceneTextOCREvaluator evaluator.cpp)
 target_link_libraries(SceneTextOCREvaluator SceneTextOCR ${CNTK_REQUIRED_LIBS} ${CMAKE_THREAD_LIBS_INIT})
+
+add_subdirectory(MapFileMaker)
+

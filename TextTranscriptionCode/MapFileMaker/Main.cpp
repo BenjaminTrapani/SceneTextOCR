@@ -1,11 +1,12 @@
+#ifdef WIN32
 #include "stdafx.h"
+#endif
 #include <sstream>
 #include <iostream>
 #include <climits>
 
 #include "MapFileMaker.hpp"
 #include "DirectoryFileFetcher.h"
-#include "TarGZFileFetcher.h"
 
 int main(int argc, char **argv) {
 	if (argc != 9) {

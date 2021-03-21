@@ -1,4 +1,6 @@
+#ifdef WIN32
 #include "stdafx.h"
+#endif
 #include <opencv2/opencv.hpp>
 #include <fstream>
 

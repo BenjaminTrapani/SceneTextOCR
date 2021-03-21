@@ -16,7 +16,7 @@ On a machine with an nvidia GPU:
 5. cd SceneTextOCR/TextTranscriptionCode/
 6. mkdir build
 7. cd build/
-8. cmake -DCNTK_DIR=/home/CNTK/ -B. -S../
+8. cmake -DCNTK_DIR=/home/CNTK/ -DBOOST_ROOT=/usr/local/boost-1.60.0/ -DBoost_NO_SYSTEM_PATHS=TRUE -B. -S../
 9. ./SceneTextOCREvaluator  ../TextTranscriptionWindows/Content/ResNetCRNNNewCNTK32SeqLenOut
 
 The evaluator waits for a path to an image, and evaluates the decoded image in the trained model. For example, pasting

@@ -8,6 +8,7 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <algorithm>
 #include "ImageFileMetadata.h"
 
 template<typename FileIterator>
@@ -24,7 +25,7 @@ public:
 		while (fileIterator.getNextMetadata(metadata) && numImagesProcessed < maxNumImages) {
 			std::string label = getLabelStringFromImageName(metadata.fileName);
 			if (label.size() * 2 <= maxSequenceLen) {
-				transform(label.begin(), label.end(), label.begin(), ::toupper);
+				std::transform(label.begin(), label.end(), label.begin(), ::toupper);
 				if (writeLabel(sequenceID, label, textOut)) {
 					writeSequencesForImage(sequenceID, metadata.filePath, imageMapOut);
 					++sequenceID;

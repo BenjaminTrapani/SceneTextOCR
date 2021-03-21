@@ -293,7 +293,7 @@ void TextTranscriptionModel::Train(const std::wstring& trainMapFile,
 	const unsigned int realBatchSize = maxSequenceLen * batchSize;
 	const MinibatchSizeSchedule schedule(realBatchSize);
 	
-	/*try {
+	try {
 		const CheckpointConfig ckptConfig(modelFile, 1, DataUnit::Sweep, true, false);
 		TestConfig testConfig(testMinibatchSource, schedule, {
 			{ *imageInput, imageInputStreamInfo },
@@ -312,11 +312,11 @@ void TextTranscriptionModel::Train(const std::wstring& trainMapFile,
 	}
 	catch (exception e) {
 		cout << e.what();
-	}*/
+	}
 
 
-	trainer->RestoreFromCheckpoint(modelFile);
-	manuallyProcessMinibatch(minibatchSource, true, 124000000000);
+	//trainer->RestoreFromCheckpoint(modelFile);
+	//manuallyProcessMinibatch(minibatchSource, true, 124000000000);
 }
 
 void TextTranscriptionModel::loadForEval()

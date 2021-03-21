@@ -28,4 +28,16 @@ will print out the decoded text WATER with the separator character '\_' included
 2. cd /home/SceneTextOCR/TextTranscriptionCode/build
 3. Step 9 and below match the manual steps
 
-Note: The current cmake build does not support building the map file generator, which is used to generate the input to the training binary from the mjsynth dataset. I will add build steps and linux support for this binary soon.
+### Training your own model
+1. Download the mjsynth data set:
+    wget https://thor.robots.ox.ac.uk/~vgg/data/text/mjsynth.tar.gz
+    tar -xf mjsynth.tar.gz
+
+2. Generate mapping files to be decoded by CNTK during training:
+    ./MapFileMaker ./mnt/ image_map_train.txt text_map_train.txt image_map_test.txt text_map_test.txt 32 6000000 9000000
+
+Replace ./mnt/ with the path to the root of the extracted mjsynth data. 32 is the maximum sequence length. 6000000 and 9000000 represent the number of training images and the total number of images respectively.
+
+3. Run the trainer:
+./SceneTextOCRTrainer MapFileMaker/image_map_train.txt MapFileMaker/text_map_train.txt MapFileMaker/image_map_test.txt MapFileMaker/text_map_test.txt /home/SceneTextOCR/TextTranscriptionCode/build/my_new_model
+

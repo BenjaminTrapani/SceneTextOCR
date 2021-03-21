@@ -3,8 +3,6 @@ set(CMAKE_CXX_STANDARD 14)
 
 project(SceneTextOCR)
 
-set(CNTK_DIR ../ExternalLibs/CNTK)
-
 find_package(OpenCV REQUIRED)
 find_package(Threads REQUIRED)
 

@@ -13,6 +13,9 @@ MODEL_FILE = os.path.join(SCRIPT_PATH, '../TextTranscriptionWindows/Content/ResN
 SSL_CERT_PATH = '/etc/letsencrypt/live/gpuandai.com/fullchain.pem'
 SSL_CERT_KEY_PATH = '/etc/letsencrypt/live/gpuandai.com/privkey.pem'
 
+if not os.path.exists(IMAGE_CACHE):
+    os.makedirs(IMAGE_CACHE)
+
 HTTPServer.ssl_adapter = BuiltinSSLAdapter(
         certificate=SSL_CERT_PATH,
         private_key=SSL_CERT_KEY_PATH)

@@ -1,7 +1,7 @@
 # SceneTextOCR
 
 ## Demo
-http://skytopsoftware.ddns.net/
+http://gpuandai.com/
 
 ## Description
 This is a modified implementation of the CRNN architecture. It transcribes cropped images of a single word into text. It is built to handle all kinds of text (cursive, some handwriting, printed etc.) It uses an 18 layer ResNet instead of the VGG stack in the original model, and gets about 97% transcription accuracy. It is trained on the mjsynth dataset. It is trained to map uppercase and lowercase letters to their uppercase version. It does not support punctuation or numbers yet. The maximum word length supported is 16 characters, although I plan to make this size arbitrary soon.

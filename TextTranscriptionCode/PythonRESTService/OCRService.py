@@ -10,8 +10,8 @@ SCRIPT_PATH = os.path.dirname(os.path.realpath(__file__))
 OCR_EVALUATOR_PATH = os.path.join(SCRIPT_PATH, '../build/SceneTextOCREvaluator')
 IMAGE_CACHE = os.path.join(SCRIPT_PATH, 'ImageCache')
 MODEL_FILE = os.path.join(SCRIPT_PATH, '../TextTranscriptionWindows/Content/ResNetCRNNNewCNTK32SeqLenOut')
-SSL_CERT_PATH = '/etc/letsencrypt/live/skytopsoftware.ddns.net/fullchain.pem'
-SSL_CERT_KEY_PATH = '/etc/letsencrypt/live/skytopsoftware.ddns.net/privkey.pem'
+SSL_CERT_PATH = '/etc/letsencrypt/live/gpuandai.com/fullchain.pem'
+SSL_CERT_KEY_PATH = '/etc/letsencrypt/live/gpuandai.com/privkey.pem'
 
 HTTPServer.ssl_adapter = BuiltinSSLAdapter(
         certificate=SSL_CERT_PATH,

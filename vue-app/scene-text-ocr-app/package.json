@@ -22,7 +22,7 @@
     "@vue/cli-plugin-e2e-nightwatch": "^3.8.0",
     "@vue/cli-plugin-pwa": "^3.8.0",
     "@vue/cli-plugin-typescript": "^3.8.0",
-    "@vue/cli-service": "^3.8.0",
+    "@vue/cli-service": "^5.0.8",
     "sass": "^1.18.0",
     "sass-loader": "^7.1.0",
     "typescript": "^3.4.3",
